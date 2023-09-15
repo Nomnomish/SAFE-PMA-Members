@@ -6,5 +6,11 @@ namespace SAFE_PMA_Members
         {
             InitializeComponent();
         }
+
+        private void editViewMembersButton_Click(object sender, EventArgs e)
+        {
+            viewEditMembers form2 = new viewEditMembers();
+            form2.ShowDialog();
+        }
     }
 }
