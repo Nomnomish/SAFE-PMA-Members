@@ -16,7 +16,7 @@ namespace SAFE_PMA_Members
         {
             using var connection = new MySqlConnection
                 (Helper.connVal("members"));
-            var output = connection.Query<Member>("dbo.").ToList();
+            var output = connection.Query<Member>().ToList();
             return output;
         }
     }
