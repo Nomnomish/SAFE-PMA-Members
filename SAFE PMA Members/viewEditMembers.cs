@@ -17,15 +17,21 @@ namespace SAFE_PMA_Members
         {
             InitializeComponent();
 
+            UpdateListing();
+        }
+
+        private void UpdateListing()
+        {
             membersListbox.DataSource = members;
             membersListbox.DisplayMember = "DisplayInfo";
         }
-
         private void SearchButton_Click(object sender, EventArgs e)
         {
             DataAccess db = new DataAccess();
 
             members = db.MemberList(LastNameTextbox.Text);
+
+            UpdateListing();
         }
     }
 }
