@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Dapper;
+﻿using System.Data;
 using MySql.Data.MySqlClient;
 
 namespace SAFE_PMA_Members
@@ -14,10 +7,14 @@ namespace SAFE_PMA_Members
     {
         public List<Member> MemberList(string lastName)
         {
-            using var connection = new MySqlConnection
-                (Helper.connVal("members"));
-            var output = connection.Query<Member>().ToList();
-            return output;
+            using var connection = new MySqlConnection (Helper.connVal("members"));
+            MySqlCommand cmd = new MySqlCommand();
+            connection.Open ();
+            cmd.CommandText = "get_user_list";
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.Parameters.AddWithValue ("@last_name", lastName);
+            cmd.Parameters["@last_name"].Direction = ParameterDirection.Input;
         }
     }
 }
