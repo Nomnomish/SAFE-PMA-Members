@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Dapper;
 using MySql.Data.MySqlClient;
 
 namespace SAFE_PMA_Members
@@ -7,14 +8,12 @@ namespace SAFE_PMA_Members
     {
         public List<Member> MemberList(string lastName)
         {
-            using var connection = new MySqlConnection (Helper.connVal("members"));
-            MySqlCommand cmd = new MySqlCommand();
-            connection.Open ();
-            cmd.CommandText = "get_user_list";
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.AddWithValue ("@last_name", lastName);
-            cmd.Parameters["@last_name"].Direction = ParameterDirection.Input;
+            using var connection = new MySqlConnection
+                (Helper.connVal("members"));
+            //var output = connection.Query<Member>($"select * from members where lastName = '{lastName}'").ToList();
+            var output = connection.Query<Member>($"CALL get_member_pre_list('{lastName}'").ToList();
+            return output;
         }
     }
 }
+
