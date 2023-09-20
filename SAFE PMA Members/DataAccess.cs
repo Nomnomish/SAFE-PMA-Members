@@ -11,8 +11,24 @@ namespace SAFE_PMA_Members
             using var connection = new MySqlConnection
                 (Helper.connVal("members"));
             //var output = connection.Query<Member>($"select * from members where lastName = '{lastName}'").ToList();
-            var output = connection.Query<Member>($"CALL get_member_pre_list('{lastName}'").ToList();
-            return output;
+            MySqlParameter[] pms = new MySqlParameter[1];
+            pms[0] = new MySqlParameter("last_name", MySqlDbType.VarChar);
+            pms[0].Value = lastName;
+
+            MySqlCommand command = new MySqlCommand();
+
+            command.Connection = connection;
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "get_member_pre_list";
+
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = pms;
+
+            DataSet ds = new DataSet();
+
+            connection.Open();
+            da.Fill(ds);
+            return ds;
         }
     }
 }
