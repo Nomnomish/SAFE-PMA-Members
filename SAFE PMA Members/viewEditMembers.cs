@@ -33,5 +33,14 @@ namespace SAFE_PMA_Members
 
             UpdateListing();
         }
+
+        private void membersListbox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (membersListbox.SelectedIndex >= 0)
+            {
+                int count = membersListbox.SelectedIndex;
+
+            }
+        }
     }
 }
