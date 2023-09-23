@@ -13,13 +13,13 @@ namespace SAFE_PMA_Members
         public string LastName { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
-        public string ReferralEmail { get; set; }
+        public int ReferralID { get; set; }
         public string StreetAddress { get; set; }
         public string City { get; set; }
         public string State { get; set; }
         public int ZipCode { get; set; }
         public int CurrentBalance { get; set; }
-        public DateTime LastBalUpdate { get; set; }
+        public string LastBalUpdate { get; set; }
         public string DisplayInfo
         {
             get
