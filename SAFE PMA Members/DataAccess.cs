@@ -10,7 +10,7 @@ namespace SAFE_PMA_Members
         {
             using var connection = new MySqlConnection
                 (Helper.connVal("members"));
-            Member output = new Member();
+            List<Member> output = new List<Member>();
             try
             {
                 connection.Open();
@@ -20,24 +20,27 @@ namespace SAFE_PMA_Members
 
                 cmd.Parameters.AddWithValue("@last_name", lastName);
 
+                string message = "Reaching out to Database...";
+                MessageBox.Show(message);
                 MySqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    string message = "Reaching out to Database...";
-                    MessageBox.Show(message);
+                    Member temp = new Member();
 
-                    output.id = rdr.GetInt32("id");
-                    output.FirstName = rdr.GetString("firstName");
-                    output.LastName = rdr.GetString("lastName");
-                    output.PhoneNumber = rdr.GetString("phoneNumber");
-                    output.Email = rdr.GetString("email");
-                    output.ReferralID = rdr.GetInt32("referralID");
-                    output.StreetAddress = rdr.GetString("streetAddress");
-                    output.City = rdr.GetString("city");
-                    output.State = rdr.GetString("state");
-                    output.ZipCode = rdr.GetInt32("zipCode");
-                    output.CurrentBalance = rdr.GetInt32("balance");
-                    output.LastBalUpdate = rdr.GetMySqlDateTime("lastBalUpdate").ToString();
+                    temp.id = rdr.GetInt32("id");
+                    temp.FirstName = rdr.GetString("firstName");
+                    temp.LastName = rdr.GetString("lastName");
+                    temp.PhoneNumber = rdr.GetString("phoneNumber");
+                    temp.Email = rdr.GetString("email");
+                    temp.ReferralID = rdr.GetInt32("referralID");
+                    temp.StreetAddress = rdr.GetString("streetAddress");
+                    temp.City = rdr.GetString("city");
+                    temp.State = rdr.GetString("state");
+                    temp.ZipCode = rdr.GetInt32("zipCode");
+                    temp.CurrentBalance = rdr.GetInt32("balance");
+                    temp.LastBalUpdate = rdr.GetMySqlDateTime("lastBalUpdate").ToString();
+                    
+                    output.Add(temp);
                 }
             }
             catch (Exception ex){ 
@@ -45,12 +48,8 @@ namespace SAFE_PMA_Members
             }
 
             connection.Close();
-            List<Member> op = new List<Member>();
-            op.Add(output);
-            return op;
-            //var output = connection.Query<Member>($"CALL get_members('{lastName}')").ToList();
-            //return output;
-
+            
+            return output;
         }
     }
 }

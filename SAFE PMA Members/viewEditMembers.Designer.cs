@@ -132,11 +132,11 @@
             // editReferralEmailLabel
             // 
             editReferralEmailLabel.AutoSize = true;
-            editReferralEmailLabel.Location = new Point(319, 149);
+            editReferralEmailLabel.Location = new Point(337, 149);
             editReferralEmailLabel.Name = "editReferralEmailLabel";
-            editReferralEmailLabel.Size = new Size(79, 15);
+            editReferralEmailLabel.Size = new Size(61, 15);
             editReferralEmailLabel.TabIndex = 8;
-            editReferralEmailLabel.Text = "Referral Email";
+            editReferralEmailLabel.Text = "Referral ID";
             // 
             // editStreetAddressLabel
             // 
@@ -276,15 +276,15 @@
             editBalanceLabel.AutoSize = true;
             editBalanceLabel.Location = new Point(417, 342);
             editBalanceLabel.Name = "editBalanceLabel";
-            editBalanceLabel.Size = new Size(38, 15);
+            editBalanceLabel.Size = new Size(91, 15);
             editBalanceLabel.TabIndex = 26;
-            editBalanceLabel.Text = "label2";
+            editBalanceLabel.Text = "Select Someone";
             // 
             // viewEditMembers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(708, 450);
+            ClientSize = new Size(690, 450);
             Controls.Add(editBalanceLabel);
             Controls.Add(editLastBalanceLabel);
             Controls.Add(updateMemberButton);

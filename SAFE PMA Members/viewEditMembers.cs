@@ -39,7 +39,18 @@ namespace SAFE_PMA_Members
             if (membersListbox.SelectedIndex >= 0)
             {
                 int count = membersListbox.SelectedIndex;
-
+                Member selected = members[count];
+                editFirstNameTextBox.Text = selected.FirstName;
+                editLastNameTextBox.Text = selected.LastName;
+                editPhoneNumberTextBox.Text = selected.PhoneNumber;
+                editEmailTextBox.Text = selected.Email;
+                editReferralEmailTextBox.Text = selected.ReferralID.ToString();
+                editStreetAddressTextBox.Text = selected.StreetAddress;
+                editCityTextBox.Text = selected.City;
+                editStateTextBox.Text = selected.State;
+                editZipCodeTextBox.Text = selected.ZipCode.ToString();
+                editCurrentBalanceTextBox.Text = selected.CurrentBalance.ToString();
+                editBalanceLabel.Text = selected.LastBalUpdate;
             }
         }
     }
