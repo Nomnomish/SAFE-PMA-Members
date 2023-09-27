@@ -47,6 +47,7 @@
             addMembersButton.TabIndex = 0;
             addMembersButton.Text = "Add Members";
             addMembersButton.UseVisualStyleBackColor = true;
+            addMembersButton.Click += addMembersButton_Click;
             // 
             // editViewMembersButton
             // 

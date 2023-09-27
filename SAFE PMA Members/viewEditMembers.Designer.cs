@@ -46,7 +46,6 @@
             editLastNameTextBox = new TextBox();
             editPhoneNumberTextBox = new TextBox();
             editEmailTextBox = new TextBox();
-            editReferralEmailTextBox = new TextBox();
             editStreetAddressTextBox = new TextBox();
             editCityTextBox = new TextBox();
             editStateTextBox = new TextBox();
@@ -55,6 +54,7 @@
             updateMemberButton = new Button();
             editLastBalanceLabel = new Label();
             editBalanceLabel = new Label();
+            editReferralIDLabel = new Label();
             SuspendLayout();
             // 
             // membersListbox
@@ -211,13 +211,6 @@
             editEmailTextBox.Size = new Size(254, 23);
             editEmailTextBox.TabIndex = 17;
             // 
-            // editReferralEmailTextBox
-            // 
-            editReferralEmailTextBox.Location = new Point(417, 146);
-            editReferralEmailTextBox.Name = "editReferralEmailTextBox";
-            editReferralEmailTextBox.Size = new Size(254, 23);
-            editReferralEmailTextBox.TabIndex = 18;
-            // 
             // editStreetAddressTextBox
             // 
             editStreetAddressTextBox.Location = new Point(417, 178);
@@ -261,6 +254,7 @@
             updateMemberButton.TabIndex = 24;
             updateMemberButton.Text = "Update";
             updateMemberButton.UseVisualStyleBackColor = true;
+            updateMemberButton.Click += updateMemberButton_Click;
             // 
             // editLastBalanceLabel
             // 
@@ -280,11 +274,21 @@
             editBalanceLabel.TabIndex = 26;
             editBalanceLabel.Text = "Select Someone";
             // 
+            // editReferralIDLabel
+            // 
+            editReferralIDLabel.AutoSize = true;
+            editReferralIDLabel.Location = new Point(417, 149);
+            editReferralIDLabel.Name = "editReferralIDLabel";
+            editReferralIDLabel.Size = new Size(91, 15);
+            editReferralIDLabel.TabIndex = 27;
+            editReferralIDLabel.Text = "Select Someone";
+            // 
             // viewEditMembers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(690, 450);
+            Controls.Add(editReferralIDLabel);
             Controls.Add(editBalanceLabel);
             Controls.Add(editLastBalanceLabel);
             Controls.Add(updateMemberButton);
@@ -293,7 +297,6 @@
             Controls.Add(editStateTextBox);
             Controls.Add(editCityTextBox);
             Controls.Add(editStreetAddressTextBox);
-            Controls.Add(editReferralEmailTextBox);
             Controls.Add(editEmailTextBox);
             Controls.Add(editPhoneNumberTextBox);
             Controls.Add(editLastNameTextBox);
@@ -338,7 +341,6 @@
         private TextBox editLastNameTextBox;
         private TextBox editPhoneNumberTextBox;
         private TextBox editEmailTextBox;
-        private TextBox editReferralEmailTextBox;
         private TextBox editStreetAddressTextBox;
         private TextBox editCityTextBox;
         private TextBox editStateTextBox;
@@ -347,5 +349,6 @@
         private Button updateMemberButton;
         private Label editLastBalanceLabel;
         private Label editBalanceLabel;
+        private Label editReferralIDLabel;
     }
 }

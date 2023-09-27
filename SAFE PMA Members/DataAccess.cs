@@ -1,5 +1,4 @@
 ﻿using System.Data;
-using Dapper;
 using MySql.Data.MySqlClient;
 
 namespace SAFE_PMA_Members

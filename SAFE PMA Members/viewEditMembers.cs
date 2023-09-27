@@ -44,7 +44,7 @@ namespace SAFE_PMA_Members
                 editLastNameTextBox.Text = selected.LastName;
                 editPhoneNumberTextBox.Text = selected.PhoneNumber;
                 editEmailTextBox.Text = selected.Email;
-                editReferralEmailTextBox.Text = selected.ReferralID.ToString();
+                editReferralIDLabel.Text = selected.ReferralID.ToString();
                 editStreetAddressTextBox.Text = selected.StreetAddress;
                 editCityTextBox.Text = selected.City;
                 editStateTextBox.Text = selected.State;
@@ -52,6 +52,11 @@ namespace SAFE_PMA_Members
                 editCurrentBalanceTextBox.Text = selected.CurrentBalance.ToString();
                 editBalanceLabel.Text = selected.LastBalUpdate;
             }
+        }
+
+        private void updateMemberButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

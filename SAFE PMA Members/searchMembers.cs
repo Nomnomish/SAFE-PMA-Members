@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace SAFE_PMA_Members
 {
-    public partial class addMemberForm : Form
+    public partial class searchMembers : Form
     {
-        public addMemberForm()
+        public searchMembers()
         {
             InitializeComponent();
-        }
-
-        private void addSelectMemberButton_Click(object sender, EventArgs e)
-        {
-            searchMembers form3 = new searchMembers();
-            form3.ShowDialog();
         }
     }
 }
