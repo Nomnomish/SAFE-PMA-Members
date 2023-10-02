@@ -50,6 +50,40 @@ namespace SAFE_PMA_Members
             
             return output;
         }
+
+        public string MemberUpdate(Member input)
+        {
+            using var connection = new MySqlConnection
+                (Helper.connVal("members"));
+            string calling = "updates_member";
+            string Msg = "";
+
+            MySqlCommand cmd = new MySqlCommand(calling, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@p_id", MySqlDbType.Int32).Value = input.id;
+            cmd.Parameters.Add("@p_firstName", MySqlDbType.VarString).Value = input.FirstName;
+            cmd.Parameters.Add("@p_lastName", MySqlDbType.VarString).Value = input.LastName;
+            cmd.Parameters.Add("@p_phoneNumber", MySqlDbType.VarString).Value = input.PhoneNumber;
+            cmd.Parameters.Add("@p_email", MySqlDbType.VarString).Value = input.Email;
+            cmd.Parameters.Add("@p_streetAddress", MySqlDbType.VarString).Value = input.StreetAddress;
+            cmd.Parameters.Add("@p_city", MySqlDbType.VarString).Value = input.City;
+            cmd.Parameters.Add("@p_state", MySqlDbType.VarString).Value = input.State;
+            cmd.Parameters.Add("@p_zipCode", MySqlDbType.Int32).Value = input.ZipCode;
+            cmd.Parameters.Add("@p_balance", MySqlDbType.Int32).Value = input.CurrentBalance;
+            cmd.Parameters.Add("@p_LastBalUpdate", MySqlDbType.Date).Value = input.LastBalUpdate;
+
+            try
+            {
+                Console.WriteLine(cmd.ExecuteNonQuery());
+                Msg = "Successfully updated.";
+            }
+            catch 
+            {
+                Msg = "Error while updating";
+            }
+
+            return Msg;
+        }
     }
 }
 

@@ -56,7 +56,38 @@ namespace SAFE_PMA_Members
 
         private void updateMemberButton_Click(object sender, EventArgs e)
         {
+            DataAccess db = new DataAccess();
 
+            if (membersListbox.SelectedIndex >= 0)
+            {
+                int count = membersListbox.SelectedIndex;
+                Member selected = members[count];
+                selected.FirstName = editFirstNameTextBox.Text;
+                selected.LastName = editLastNameTextBox.Text;
+                selected.PhoneNumber = editPhoneNumberTextBox.Text;
+                selected.Email = editEmailTextBox.Text;
+                selected.StreetAddress = editStreetAddressTextBox.Text;
+                selected.City = editCityTextBox.Text;
+                selected.State = editStateTextBox.Text;
+                selected.ZipCode = Int32.Parse(editZipCodeTextBox.Text);
+                if (members[count].CurrentBalance != Int32.Parse(editCurrentBalanceTextBox.Text))
+                {
+                    selected.CurrentBalance = Int32.Parse(editCurrentBalanceTextBox.Text);
+                    DateTime date = DateTime.Now;
+                    selected.LastBalUpdate = date.ToLongDateString();
+                }
+                else
+                {
+                    selected.CurrentBalance = members[count].CurrentBalance;
+                    selected.LastBalUpdate = members[count].LastBalUpdate;
+                }
+                string Message = "";
+
+                Message = db.MemberUpdate(selected);
+
+                MessageBox.Show(Message);
+
+            }
         }
     }
 }
