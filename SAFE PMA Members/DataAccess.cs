@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using MySql.Data.MySqlClient;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
 
 namespace SAFE_PMA_Members
 {
@@ -82,7 +83,7 @@ namespace SAFE_PMA_Members
             cmd.Parameters["@p_balance"].Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("@p_LastBalUpdate", input.LastBalUpdate);
             cmd.Parameters["@p_LastBalUpdate"].Direction = ParameterDirection.Input;
-
+            
             try
             {
                 connection.Open();
@@ -91,6 +92,53 @@ namespace SAFE_PMA_Members
                 Msg = "Successfully updated.";
             }
             catch 
+            {
+                Msg = "Error while updating";
+            }
+
+            return Msg;
+        }
+
+        public string MemberInsert(Member input)
+        {
+            using var connection = new MySqlConnection
+                (Helper.connVal("members"));
+            string calling = "insert_member";
+            string Msg = "";
+
+            MySqlCommand cmd = new MySqlCommand(calling, connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@p_firstName", input.FirstName);
+            cmd.Parameters["@p_firstName"].Direction= ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_lastName", input.LastName);
+            cmd.Parameters["@p_lastName"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_phoneNumber", input.PhoneNumber);
+            cmd.Parameters["@p_phoneNumber"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_email", input.Email);
+            cmd.Parameters["@p_email"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_referralID", input.ReferralID);
+            cmd.Parameters["@p_referralID"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_streetAddress", input.StreetAddress);
+            cmd.Parameters["@p_streetAddress"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_city", input.City);
+            cmd.Parameters["@p_city"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_state", input.State);
+            cmd.Parameters["@p_state"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_zipCode", input.ZipCode);
+            cmd.Parameters["@p_zipCode"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_balance", input.CurrentBalance);
+            cmd.Parameters["@p_balance"].Direction = ParameterDirection.Input;            
+            cmd.Parameters.AddWithValue("@p_lastBalUpdate", input.LastBalUpdate);
+            cmd.Parameters["@p_lastBalUpdate"].Direction = ParameterDirection.Input;
+
+            try
+            {
+                connection.Open();
+                cmd.ExecuteNonQuery();
+                connection.Close();
+                Msg = "Successfully updated.";
+            }
+            catch
             {
                 Msg = "Error while updating";
             }

@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace SAFE_PMA_Members
 {
+    public class SearchMember
+    {
+        
+    }
     public class Member
     {
         public  int id { get; set; }

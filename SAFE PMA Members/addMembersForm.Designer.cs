@@ -44,10 +44,12 @@
             addStateLabel = new Label();
             addStateTextBox = new TextBox();
             addZipCodeLabel = new Label();
-            textBox1 = new TextBox();
+            addZipCodeTextBox = new TextBox();
             addCurrentBalanceLabel = new Label();
-            textBox2 = new TextBox();
+            AddCurrentBalanceTextBox = new TextBox();
             addSubmitButton = new Button();
+            addCityLabel = new Label();
+            addCityTextBox = new TextBox();
             SuspendLayout();
             // 
             // addFirstNameLabel
@@ -161,7 +163,7 @@
             // addStateLabel
             // 
             addStateLabel.AutoSize = true;
-            addStateLabel.Location = new Point(160, 199);
+            addStateLabel.Location = new Point(160, 233);
             addStateLabel.Name = "addStateLabel";
             addStateLabel.Size = new Size(33, 15);
             addStateLabel.TabIndex = 13;
@@ -169,7 +171,7 @@
             // 
             // addStateTextBox
             // 
-            addStateTextBox.Location = new Point(213, 196);
+            addStateTextBox.Location = new Point(213, 230);
             addStateTextBox.Name = "addStateTextBox";
             addStateTextBox.Size = new Size(239, 23);
             addStateTextBox.TabIndex = 14;
@@ -177,53 +179,72 @@
             // addZipCodeLabel
             // 
             addZipCodeLabel.AutoSize = true;
-            addZipCodeLabel.Location = new Point(138, 228);
+            addZipCodeLabel.Location = new Point(138, 262);
             addZipCodeLabel.Name = "addZipCodeLabel";
             addZipCodeLabel.Size = new Size(55, 15);
             addZipCodeLabel.TabIndex = 15;
             addZipCodeLabel.Text = "Zip Code";
             // 
-            // textBox1
+            // addZipCodeTextBox
             // 
-            textBox1.Location = new Point(213, 225);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(239, 23);
-            textBox1.TabIndex = 16;
+            addZipCodeTextBox.Location = new Point(213, 259);
+            addZipCodeTextBox.Name = "addZipCodeTextBox";
+            addZipCodeTextBox.Size = new Size(239, 23);
+            addZipCodeTextBox.TabIndex = 16;
             // 
             // addCurrentBalanceLabel
             // 
             addCurrentBalanceLabel.AutoSize = true;
-            addCurrentBalanceLabel.Location = new Point(102, 257);
+            addCurrentBalanceLabel.Location = new Point(102, 291);
             addCurrentBalanceLabel.Name = "addCurrentBalanceLabel";
             addCurrentBalanceLabel.Size = new Size(91, 15);
             addCurrentBalanceLabel.TabIndex = 17;
             addCurrentBalanceLabel.Text = "Current Balance";
             // 
-            // textBox2
+            // AddCurrentBalanceTextBox
             // 
-            textBox2.Location = new Point(213, 254);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(239, 23);
-            textBox2.TabIndex = 18;
+            AddCurrentBalanceTextBox.Location = new Point(213, 288);
+            AddCurrentBalanceTextBox.Name = "AddCurrentBalanceTextBox";
+            AddCurrentBalanceTextBox.Size = new Size(239, 23);
+            AddCurrentBalanceTextBox.TabIndex = 18;
             // 
             // addSubmitButton
             // 
-            addSubmitButton.Location = new Point(357, 296);
+            addSubmitButton.Location = new Point(357, 330);
             addSubmitButton.Name = "addSubmitButton";
             addSubmitButton.Size = new Size(95, 23);
             addSubmitButton.TabIndex = 19;
             addSubmitButton.Text = "Submit";
             addSubmitButton.UseVisualStyleBackColor = true;
+            addSubmitButton.Click += addSubmitButton_Click;
+            // 
+            // addCityLabel
+            // 
+            addCityLabel.AutoSize = true;
+            addCityLabel.Location = new Point(160, 201);
+            addCityLabel.Name = "addCityLabel";
+            addCityLabel.Size = new Size(28, 15);
+            addCityLabel.TabIndex = 20;
+            addCityLabel.Text = "City";
+            // 
+            // addCityTextBox
+            // 
+            addCityTextBox.Location = new Point(213, 198);
+            addCityTextBox.Name = "addCityTextBox";
+            addCityTextBox.Size = new Size(239, 23);
+            addCityTextBox.TabIndex = 12;
             // 
             // addMemberForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(636, 370);
+            Controls.Add(addCityTextBox);
+            Controls.Add(addCityLabel);
             Controls.Add(addSubmitButton);
-            Controls.Add(textBox2);
+            Controls.Add(AddCurrentBalanceTextBox);
             Controls.Add(addCurrentBalanceLabel);
-            Controls.Add(textBox1);
+            Controls.Add(addZipCodeTextBox);
             Controls.Add(addZipCodeLabel);
             Controls.Add(addStateTextBox);
             Controls.Add(addStateLabel);
@@ -264,9 +285,11 @@
         private Label addStateLabel;
         private TextBox addStateTextBox;
         private Label addZipCodeLabel;
-        private TextBox textBox1;
+        private TextBox addZipCodeTextBox;
         private Label addCurrentBalanceLabel;
-        private TextBox textBox2;
+        private TextBox AddCurrentBalanceTextBox;
         private Button addSubmitButton;
+        private Label addCityLabel;
+        private TextBox addCityTextBox;
     }
 }
