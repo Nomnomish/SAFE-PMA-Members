@@ -74,12 +74,13 @@ namespace SAFE_PMA_Members
                 {
                     selected.CurrentBalance = Int32.Parse(editCurrentBalanceTextBox.Text);
                     DateTime date = DateTime.Now;
-                    selected.LastBalUpdate = date.ToLongDateString();
+                    selected.LastBalUpdate = date.ToString("yyyy - MM - dd");
                 }
                 else
                 {
                     selected.CurrentBalance = members[count].CurrentBalance;
-                    selected.LastBalUpdate = members[count].LastBalUpdate;
+                    string[] temp = members[count].LastBalUpdate.Split("/".ToCharArray());
+                    selected.LastBalUpdate = temp[2] + " - " + temp[1] + " - " + temp[0];
                 }
                 string Message = "";
 
