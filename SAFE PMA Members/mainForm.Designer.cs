@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             addMembersButton = new Button();
             editViewMembersButton = new Button();
             mainMenuStrip = new MenuStrip();
@@ -111,6 +112,7 @@
             Controls.Add(editViewMembersButton);
             Controls.Add(addMembersButton);
             Controls.Add(mainMenuStrip);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = mainMenuStrip;
             Name = "mainForm";
             Text = "S.A.F.E PMA Members";
