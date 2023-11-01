@@ -55,6 +55,8 @@
             editLastBalanceLabel = new Label();
             editBalanceLabel = new Label();
             editReferralIDLabel = new Label();
+            memberReferralLabel = new Label();
+            referralsListbox = new ListBox();
             SuspendLayout();
             // 
             // membersListbox
@@ -63,7 +65,7 @@
             membersListbox.ItemHeight = 15;
             membersListbox.Location = new Point(12, 102);
             membersListbox.Name = "membersListbox";
-            membersListbox.Size = new Size(277, 334);
+            membersListbox.Size = new Size(277, 124);
             membersListbox.TabIndex = 0;
             membersListbox.SelectedIndexChanged += membersListbox_SelectedIndexChanged;
             // 
@@ -283,11 +285,31 @@
             editReferralIDLabel.TabIndex = 27;
             editReferralIDLabel.Text = "Select Someone";
             // 
+            // memberReferralLabel
+            // 
+            memberReferralLabel.AutoSize = true;
+            memberReferralLabel.Location = new Point(13, 240);
+            memberReferralLabel.Name = "memberReferralLabel";
+            memberReferralLabel.Size = new Size(100, 15);
+            memberReferralLabel.TabIndex = 28;
+            memberReferralLabel.Text = "Member Referrals";
+            // 
+            // referralsListbox
+            // 
+            referralsListbox.FormattingEnabled = true;
+            referralsListbox.ItemHeight = 15;
+            referralsListbox.Location = new Point(12, 263);
+            referralsListbox.Name = "referralsListbox";
+            referralsListbox.Size = new Size(277, 124);
+            referralsListbox.TabIndex = 29;
+            // 
             // viewEditMembers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(690, 450);
+            ClientSize = new Size(690, 411);
+            Controls.Add(referralsListbox);
+            Controls.Add(memberReferralLabel);
             Controls.Add(editReferralIDLabel);
             Controls.Add(editBalanceLabel);
             Controls.Add(editLastBalanceLabel);
@@ -350,5 +372,7 @@
         private Label editLastBalanceLabel;
         private Label editBalanceLabel;
         private Label editReferralIDLabel;
+        private Label memberReferralLabel;
+        private ListBox referralsListbox;
     }
 }

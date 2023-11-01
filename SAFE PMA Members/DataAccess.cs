@@ -52,6 +52,52 @@ namespace SAFE_PMA_Members
             return output;
         }
 
+        public List<Member> ReferralUpdate(Member input)
+        {
+            using var connection = new MySqlConnection
+                (Helper.connVal("members"));
+            string calling = "get_referrals";
+            List<Member> output = new List<Member>();
+
+            try
+            {
+                connection.Open();
+                MySqlCommand cmd = new MySqlCommand(calling, connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@referral_id", input.id);
+                cmd.Parameters["@referral_id"].Direction = ParameterDirection.Input;
+
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Member temp = new Member();
+
+                    temp.id = rdr.GetInt32("id");
+                    temp.FirstName = rdr.GetString("firstName");
+                    temp.LastName = rdr.GetString("lastName");
+                    temp.PhoneNumber = rdr.GetString("phoneNumber");
+                    temp.Email = rdr.GetString("email");
+                    temp.ReferralID = rdr.GetInt32("referralID");
+                    temp.StreetAddress = rdr.GetString("streetAddress");
+                    temp.City = rdr.GetString("city");
+                    temp.State = rdr.GetString("state");
+                    temp.ZipCode = rdr.GetInt32("zipCode");
+                    temp.CurrentBalance = rdr.GetInt32("balance");
+                    temp.LastBalUpdate = rdr.GetMySqlDateTime("lastBalUpdate").ToString();
+
+                    output.Add(temp);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        connection.Close();
+            
+            return output;
+        }
+
         public string MemberUpdate(Member input)
         {
             using var connection = new MySqlConnection

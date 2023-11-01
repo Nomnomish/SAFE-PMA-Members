@@ -47,7 +47,7 @@ namespace SAFE_PMA_Members
             selected.ZipCode = Int32.Parse(addZipCodeTextBox.Text);
             selected.CurrentBalance = Int32.Parse(AddCurrentBalanceTextBox.Text);
             DateTime date = DateTime.Now;
-            selected.LastBalUpdate = date.ToString("yyyy - MM - dd");
+            selected.LastBalUpdate = date.ToString("yyyy-MM-dd");
 
 
             string Message = "";

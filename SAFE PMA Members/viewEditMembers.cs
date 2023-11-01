@@ -13,11 +13,18 @@ namespace SAFE_PMA_Members
     public partial class viewEditMembers : Form
     {
         List<Member> members = new List<Member>();
+        List<Member> referrals = new List<Member>();
         public viewEditMembers()
         {
             InitializeComponent();
 
             UpdateListing();
+        }
+        
+        private void UpdateReferrals()
+        {
+            referralsListbox.DataSource = referrals;
+            referralsListbox.DisplayMember = "DisplayInfo";
         }
 
         private void UpdateListing()
@@ -28,10 +35,13 @@ namespace SAFE_PMA_Members
         private void SearchButton_Click(object sender, EventArgs e)
         {
             DataAccess db = new DataAccess();
+            DataAccess referraldb = new DataAccess();
 
             members = db.MemberList(LastNameTextbox.Text);
+            referrals = referraldb.ReferralUpdate(members[0]);
 
             UpdateListing();
+            UpdateReferrals();
         }
 
         private void membersListbox_SelectedIndexChanged(object sender, EventArgs e)
@@ -74,13 +84,13 @@ namespace SAFE_PMA_Members
                 {
                     selected.CurrentBalance = Int32.Parse(editCurrentBalanceTextBox.Text);
                     DateTime date = DateTime.Now;
-                    selected.LastBalUpdate = date.ToString("yyyy - MM - dd");
+                    selected.LastBalUpdate = date.ToString("yyyy-MM-dd");
                 }
                 else
                 {
                     selected.CurrentBalance = members[count].CurrentBalance;
                     string[] temp = members[count].LastBalUpdate.Split("/".ToCharArray());
-                    selected.LastBalUpdate = temp[2] + " - " + temp[1] + " - " + temp[0];
+                    selected.LastBalUpdate = temp[2] + "-" + temp[1] + "-" + temp[0];
                 }
                 string Message = "";
 
