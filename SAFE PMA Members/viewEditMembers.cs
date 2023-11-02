@@ -20,7 +20,7 @@ namespace SAFE_PMA_Members
 
             UpdateListing();
         }
-        
+
         private void UpdateReferrals()
         {
             referralsListbox.DataSource = referrals;
@@ -46,6 +46,8 @@ namespace SAFE_PMA_Members
 
         private void membersListbox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DataAccess referraldb = new DataAccess();
+
             if (membersListbox.SelectedIndex >= 0)
             {
                 int count = membersListbox.SelectedIndex;
@@ -61,6 +63,9 @@ namespace SAFE_PMA_Members
                 editZipCodeTextBox.Text = selected.ZipCode.ToString();
                 editCurrentBalanceTextBox.Text = selected.CurrentBalance.ToString();
                 editBalanceLabel.Text = selected.LastBalUpdate;
+                referrals = referraldb.ReferralUpdate(selected);
+
+                UpdateReferrals();
             }
         }
 
@@ -98,6 +103,14 @@ namespace SAFE_PMA_Members
 
                 MessageBox.Show(Message);
 
+            }
+        }
+
+        private void LastNameTextbox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                SearchButton_Click(sender, e);
             }
         }
     }

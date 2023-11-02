@@ -24,6 +24,8 @@ namespace SAFE_PMA_Members
         public int ZipCode { get; set; }
         public int CurrentBalance { get; set; }
         public string LastBalUpdate { get; set; }
+        public string Status {  get; set; }
+        public int MembershipID {  get; set; }
         public string DisplayInfo
         {
             get
