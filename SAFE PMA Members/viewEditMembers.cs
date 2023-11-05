@@ -19,6 +19,14 @@ namespace SAFE_PMA_Members
             InitializeComponent();
 
             UpdateListing();
+
+            editMemberStatusComboBox.DataSource = new ComboItem[] {
+                new ComboItem{ ID = 0, Text = "Paid" },
+                new ComboItem{ ID = 1, Text = "Unpaid"},
+                new ComboItem{ ID = 2, Text = "Inactive"}
+            };
+            editMemberStatusComboBox.DisplayMember = "Text";
+            editMemberStatusComboBox.ValueMember = "ID";
         }
 
         private void UpdateReferrals()
@@ -64,6 +72,8 @@ namespace SAFE_PMA_Members
                 editCurrentBalanceTextBox.Text = selected.CurrentBalance.ToString();
                 editBalanceLabel.Text = selected.LastBalUpdate;
                 referrals = referraldb.ReferralUpdate(selected);
+                memberIDLabel.Text = selected.MembershipID.ToString();
+                editMemberStatusComboBox.SelectedValue = selected.MemberStatus;
 
                 UpdateReferrals();
             }
@@ -97,6 +107,10 @@ namespace SAFE_PMA_Members
                     string[] temp = members[count].LastBalUpdate.Split("/".ToCharArray());
                     selected.LastBalUpdate = temp[2] + "-" + temp[1] + "-" + temp[0];
                 }
+                selected.MembershipID = Int32.Parse(memberIDLabel.Text);
+                selected.MemberStatus = (int)editMemberStatusComboBox.SelectedValue;
+
+
                 string Message = "";
 
                 Message = db.MemberUpdate(selected);

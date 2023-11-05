@@ -39,6 +39,8 @@ namespace SAFE_PMA_Members
                     temp.ZipCode = rdr.GetInt32("zipCode");
                     temp.CurrentBalance = rdr.GetInt32("balance");
                     temp.LastBalUpdate = rdr.GetMySqlDateTime("lastBalUpdate").ToString();
+                    temp.MembershipID = rdr.GetInt32("membershipID");
+                    temp.MemberStatus = rdr.GetInt32("memberStatus");
                     
                     output.Add(temp);
                 }
@@ -84,6 +86,8 @@ namespace SAFE_PMA_Members
                     temp.ZipCode = rdr.GetInt32("zipCode");
                     temp.CurrentBalance = rdr.GetInt32("balance");
                     temp.LastBalUpdate = rdr.GetMySqlDateTime("lastBalUpdate").ToString();
+                    temp.MembershipID = rdr.GetInt32("membershipID");
+                    temp.MemberStatus = rdr.GetInt32("memberStatus");
 
                     output.Add(temp);
                 }
@@ -102,7 +106,7 @@ namespace SAFE_PMA_Members
         {
             using var connection = new MySqlConnection
                 (Helper.connVal("members"));
-            string calling = "updates_member";
+            string calling = "updates_members";
             string Msg = "";
 
             MySqlCommand cmd = new MySqlCommand(calling, connection);
@@ -129,7 +133,11 @@ namespace SAFE_PMA_Members
             cmd.Parameters["@p_balance"].Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("@p_LastBalUpdate", input.LastBalUpdate);
             cmd.Parameters["@p_LastBalUpdate"].Direction = ParameterDirection.Input;
-            
+            cmd.Parameters.AddWithValue("@p_membershipID", input.MembershipID);
+            cmd.Parameters["@p_membershipID"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_memberStatus", input.MemberStatus);
+            cmd.Parameters["@p_memberStatus"].Direction = ParameterDirection.Input;
+
             try
             {
                 connection.Open();
@@ -149,7 +157,7 @@ namespace SAFE_PMA_Members
         {
             using var connection = new MySqlConnection
                 (Helper.connVal("members"));
-            string calling = "insert_member";
+            string calling = "inserts_member";
             string Msg = "";
 
             MySqlCommand cmd = new MySqlCommand(calling, connection);
@@ -176,6 +184,10 @@ namespace SAFE_PMA_Members
             cmd.Parameters["@p_balance"].Direction = ParameterDirection.Input;            
             cmd.Parameters.AddWithValue("@p_lastBalUpdate", input.LastBalUpdate);
             cmd.Parameters["@p_lastBalUpdate"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_membershipID", input.MembershipID);
+            cmd.Parameters["@p_membershipID"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_memberStatus", input.MemberStatus);
+            cmd.Parameters["@p_memberStatus"].Direction = ParameterDirection.Input;
 
             try
             {

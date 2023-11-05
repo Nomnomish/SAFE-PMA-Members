@@ -50,6 +50,10 @@
             addSubmitButton = new Button();
             addCityLabel = new Label();
             addCityTextBox = new TextBox();
+            addMembershipIDLabel = new Label();
+            addMembershipIDTextBox = new TextBox();
+            addMemberStatusLabel = new Label();
+            addMemberStatusComboBox = new ComboBox();
             SuspendLayout();
             // 
             // addFirstNameLabel
@@ -210,7 +214,7 @@
             // 
             // addSubmitButton
             // 
-            addSubmitButton.Location = new Point(357, 330);
+            addSubmitButton.Location = new Point(357, 394);
             addSubmitButton.Name = "addSubmitButton";
             addSubmitButton.Size = new Size(95, 23);
             addSubmitButton.TabIndex = 19;
@@ -234,11 +238,48 @@
             addCityTextBox.Size = new Size(239, 23);
             addCityTextBox.TabIndex = 12;
             // 
+            // addMembershipIDLabel
+            // 
+            addMembershipIDLabel.AutoSize = true;
+            addMembershipIDLabel.Location = new Point(104, 320);
+            addMembershipIDLabel.Name = "addMembershipIDLabel";
+            addMembershipIDLabel.Size = new Size(88, 15);
+            addMembershipIDLabel.TabIndex = 21;
+            addMembershipIDLabel.Text = "Membership ID";
+            // 
+            // addMembershipIDTextBox
+            // 
+            addMembershipIDTextBox.Location = new Point(213, 317);
+            addMembershipIDTextBox.Name = "addMembershipIDTextBox";
+            addMembershipIDTextBox.Size = new Size(239, 23);
+            addMembershipIDTextBox.TabIndex = 22;
+            // 
+            // addMemberStatusLabel
+            // 
+            addMemberStatusLabel.AutoSize = true;
+            addMemberStatusLabel.Location = new Point(106, 349);
+            addMemberStatusLabel.Name = "addMemberStatusLabel";
+            addMemberStatusLabel.Size = new Size(87, 15);
+            addMemberStatusLabel.TabIndex = 24;
+            addMemberStatusLabel.Text = "Member Status";
+            // 
+            // addMemberStatusComboBox
+            // 
+            addMemberStatusComboBox.FormattingEnabled = true;
+            addMemberStatusComboBox.Location = new Point(213, 346);
+            addMemberStatusComboBox.Name = "addMemberStatusComboBox";
+            addMemberStatusComboBox.Size = new Size(239, 23);
+            addMemberStatusComboBox.TabIndex = 25;
+            // 
             // addMemberForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(636, 370);
+            ClientSize = new Size(636, 429);
+            Controls.Add(addMemberStatusComboBox);
+            Controls.Add(addMemberStatusLabel);
+            Controls.Add(addMembershipIDTextBox);
+            Controls.Add(addMembershipIDLabel);
             Controls.Add(addCityTextBox);
             Controls.Add(addCityLabel);
             Controls.Add(addSubmitButton);
@@ -291,5 +332,9 @@
         private Button addSubmitButton;
         private Label addCityLabel;
         private TextBox addCityTextBox;
+        private Label addMembershipIDLabel;
+        private TextBox addMembershipIDTextBox;
+        private Label addMemberStatusLabel;
+        private ComboBox addMemberStatusComboBox;
     }
 }

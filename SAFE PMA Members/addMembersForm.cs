@@ -13,10 +13,18 @@ namespace SAFE_PMA_Members
 {
     public partial class addMemberForm : Form
     {
+
         Member addition = new Member();
         public addMemberForm()
         {
             InitializeComponent();
+            List<ComboItem> list = new List<ComboItem>();
+            list.Add(new ComboItem { ID = 0, Text = "Paid" });
+            list.Add(new ComboItem { ID = 1, Text = "Unpaid" });
+            list.Add(new ComboItem { ID = 2, Text = "Inactive" });
+            addMemberStatusComboBox.DataSource = list;
+            addMemberStatusComboBox.DisplayMember = "Text";
+            addMemberStatusComboBox.ValueMember = "ID";
         }
 
         private void addSelectMemberButton_Click(object sender, EventArgs e)
@@ -48,6 +56,8 @@ namespace SAFE_PMA_Members
             selected.CurrentBalance = Int32.Parse(AddCurrentBalanceTextBox.Text);
             DateTime date = DateTime.Now;
             selected.LastBalUpdate = date.ToString("yyyy-MM-dd");
+            selected.MembershipID = Int32.Parse(addMembershipIDTextBox.Text);
+            selected.MemberStatus = (int)addMemberStatusComboBox.SelectedValue;
 
 
             string Message = "";

@@ -60,7 +60,7 @@
             membershipIDLabel = new Label();
             memberIDLabel = new Label();
             statusLabel = new Label();
-            memberStatusLabel = new Label();
+            editMemberStatusComboBox = new ComboBox();
             SuspendLayout();
             // 
             // membersListbox
@@ -335,21 +335,20 @@
             statusLabel.TabIndex = 32;
             statusLabel.Text = "Status:";
             // 
-            // memberStatusLabel
+            // editMemberStatusComboBox
             // 
-            memberStatusLabel.AutoSize = true;
-            memberStatusLabel.Location = new Point(417, 394);
-            memberStatusLabel.Name = "memberStatusLabel";
-            memberStatusLabel.Size = new Size(91, 15);
-            memberStatusLabel.TabIndex = 33;
-            memberStatusLabel.Text = "Select Someone";
+            editMemberStatusComboBox.FormattingEnabled = true;
+            editMemberStatusComboBox.Location = new Point(417, 387);
+            editMemberStatusComboBox.Name = "editMemberStatusComboBox";
+            editMemberStatusComboBox.Size = new Size(254, 23);
+            editMemberStatusComboBox.TabIndex = 33;
             // 
             // viewEditMembers
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(690, 461);
-            Controls.Add(memberStatusLabel);
+            Controls.Add(editMemberStatusComboBox);
             Controls.Add(statusLabel);
             Controls.Add(memberIDLabel);
             Controls.Add(membershipIDLabel);
@@ -422,6 +421,6 @@
         private Label membershipIDLabel;
         private Label memberIDLabel;
         private Label statusLabel;
-        private Label memberStatusLabel;
+        private ComboBox editMemberStatusComboBox;
     }
 }
