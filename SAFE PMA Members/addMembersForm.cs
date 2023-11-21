@@ -31,10 +31,14 @@ namespace SAFE_PMA_Members
         {
             searchMembers form3 = new searchMembers();
             var result = form3.ShowDialog();
+            Member referral = new Member();
+            DataAccess db = new DataAccess();
+
             if (result == DialogResult.OK)
             {
                 addition.ReferralID = form3.id;
-                addSelectMemberLabel.Text = form3.id.ToString();
+                referral = db.getReferralID(form3.id);
+                addSelectMemberLabel.Text = referral.DisplayInfo ;
             }
         }
 

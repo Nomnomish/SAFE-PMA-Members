@@ -27,6 +27,8 @@ namespace SAFE_PMA_Members
         public string LastBalUpdate { get; set; }
         public int MemberStatus {  get; set; }
         public int MembershipID {  get; set; }
+        public string JoinedDate { get; set; }
+        public int MembershipLevel { get; set; }
         public string DisplayInfo
         {
             get

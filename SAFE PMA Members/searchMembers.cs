@@ -46,5 +46,18 @@ namespace SAFE_PMA_Members
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        private void SearchLastNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SearchLastNameTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
+            {
+                SearchMembersSearchButton_Click(sender, e);
+            }
+        }
     }
 }

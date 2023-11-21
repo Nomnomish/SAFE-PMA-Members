@@ -6,6 +6,73 @@ namespace SAFE_PMA_Members
 {
     public class DataAccess
     {
+        public void FileAccess(string[] input)
+        {
+            string folder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            if (!Directory.Exists(folder + "/SAFE")) Directory.CreateDirectory(folder + "/SAFE");
+            string fileName = "SAFE-backup.csv";
+            string fullPath = folder + "/SAFE/" + fileName;
+            File.WriteAllLines(fullPath, input);
+        }
+        public string[] BackupAction()
+        {
+
+        }
+        public string[] BackupList()
+        {
+            using var connection = new MySqlConnection
+                (Helper.connVal("members"));
+            List<Member> output = new List<Member>();
+            int count = 0;
+            try
+            {
+                connection.Open();
+                string calling = "backup_memberrs";
+                MySqlCommand cmd = new MySqlCommand(calling, connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                string message = "Backing up Database...";
+                MessageBox.Show(message);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    Member temp = new Member();
+
+                    temp.id = rdr.GetInt32("id");
+                    temp.FirstName = rdr.GetString("firstName");
+                    temp.LastName = rdr.GetString("lastName");
+                    temp.PhoneNumber = rdr.GetString("phoneNumber");
+                    temp.Email = rdr.GetString("email");
+                    temp.ReferralID = rdr.GetInt32("referralID");
+                    temp.StreetAddress = rdr.GetString("streetAddress");
+                    temp.City = rdr.GetString("city");
+                    temp.State = rdr.GetString("state");
+                    temp.ZipCode = rdr.GetInt32("zipCode");
+                    temp.CurrentBalance = rdr.GetInt32("balance");
+                    temp.LastBalUpdate = rdr.GetMySqlDateTime("lastBalUpdate").ToString();
+                    temp.MembershipID = rdr.GetInt32("membershipID");
+                    temp.MemberStatus = rdr.GetInt32("memberStatus");
+                    temp.JoinedDate = rdr.GetMySqlDateTime("joinedDate").ToString();
+                    temp.MembershipLevel = rdr.GetInt32("membershipLevel");
+
+                    output.Add(temp);
+                    count++;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            int i = 0;
+            string[] values = new string[count];
+            foreach (Member temp in output)
+            {
+                values[i] = temp.id.ToString() + "," + temp.FirstName + "," + temp.LastName + "," + temp.PhoneNumber + "," + temp.Email + "," + temp.ReferralID.ToString() + "," + temp.StreetAddress + "," + temp.City + "," + temp.State + "," + temp.ZipCode.ToString() + "," + temp.CurrentBalance.ToString() + "," + temp.LastBalUpdate + "," + temp.MemberStatus.ToString() + "," + temp.MemberStatus.ToString() + "," + temp.MembershipID.ToString() + "," + temp.JoinedDate + "," + temp.MembershipLevel.ToString();
+                i++;
+            }
+            return values;
+        }
         public List<Member> MemberList(string lastName)
         {
             using var connection = new MySqlConnection
@@ -41,6 +108,8 @@ namespace SAFE_PMA_Members
                     temp.LastBalUpdate = rdr.GetMySqlDateTime("lastBalUpdate").ToString();
                     temp.MembershipID = rdr.GetInt32("membershipID");
                     temp.MemberStatus = rdr.GetInt32("memberStatus");
+                    temp.JoinedDate = rdr.GetMySqlDateTime("joinedDate").ToString();
+                    temp.MembershipLevel = rdr.GetInt32("membershipLevel");
                     
                     output.Add(temp);
                 }
@@ -88,6 +157,8 @@ namespace SAFE_PMA_Members
                     temp.LastBalUpdate = rdr.GetMySqlDateTime("lastBalUpdate").ToString();
                     temp.MembershipID = rdr.GetInt32("membershipID");
                     temp.MemberStatus = rdr.GetInt32("memberStatus");
+                    temp.JoinedDate = rdr.GetMySqlDateTime("joinedDate").ToString();
+                    temp.MembershipLevel = rdr.GetInt32("membershipLevel");
 
                     output.Add(temp);
                 }
@@ -137,6 +208,10 @@ namespace SAFE_PMA_Members
             cmd.Parameters["@p_membershipID"].Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("@p_memberStatus", input.MemberStatus);
             cmd.Parameters["@p_memberStatus"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_joinedDate", input.JoinedDate);
+            cmd.Parameters["@p_joinedDate"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_membershipLevel", input.MembershipLevel);
+            cmd.Parameters["@p_membershipLevel"].Direction = ParameterDirection.Input;
 
             try
             {
@@ -188,6 +263,10 @@ namespace SAFE_PMA_Members
             cmd.Parameters["@p_membershipID"].Direction = ParameterDirection.Input;
             cmd.Parameters.AddWithValue("@p_memberStatus", input.MemberStatus);
             cmd.Parameters["@p_memberStatus"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_joinedDate", input.JoinedDate);
+            cmd.Parameters["@p_joinedDate"].Direction = ParameterDirection.Input;
+            cmd.Parameters.AddWithValue("@p_membershipLevel", input.MembershipLevel);
+            cmd.Parameters["@p_membershipLevel"].Direction = ParameterDirection.Input;
 
             try
             {
@@ -202,6 +281,51 @@ namespace SAFE_PMA_Members
             }
 
             return Msg;
+        }
+
+        public Member getReferralID(int input)
+        {
+            using var connection = new MySqlConnection
+                (Helper.connVal("members"));
+            string calling = "get_referral_id";
+
+            Member temp = new Member();
+
+            MySqlCommand cmd = new MySqlCommand(calling, connection);
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@referral_id", input);
+                cmd.Parameters["@referral_id"].Direction = ParameterDirection.Input;
+                connection.Open();
+
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    temp.id = rdr.GetInt32("id");
+                    temp.FirstName = rdr.GetString("firstName");
+                    temp.LastName = rdr.GetString("lastName");
+                    temp.PhoneNumber = rdr.GetString("phoneNumber");
+                    temp.Email = rdr.GetString("email");
+                    temp.ReferralID = rdr.GetInt32("referralID");
+                    temp.StreetAddress = rdr.GetString("streetAddress");
+                    temp.City = rdr.GetString("city");
+                    temp.State = rdr.GetString("state");
+                    temp.ZipCode = rdr.GetInt32("zipCode");
+                    temp.CurrentBalance = rdr.GetInt32("balance");
+                    temp.LastBalUpdate = rdr.GetMySqlDateTime("lastBalUpdate").ToString();
+                    temp.MembershipID = rdr.GetInt32("membershipID");
+                    temp.MemberStatus = rdr.GetInt32("memberStatus");
+                    temp.JoinedDate = rdr.GetMySqlDateTime("joinedDate").ToString();
+                    temp.MembershipLevel = rdr.GetInt32("membershipLevel");
+                }
+                connection.Close();
+            }
+            catch(Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return temp;
         }
     }
 }

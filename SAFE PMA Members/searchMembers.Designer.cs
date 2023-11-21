@@ -50,6 +50,7 @@
             SearchLastNameTextBox.Name = "SearchLastNameTextBox";
             SearchLastNameTextBox.Size = new Size(167, 23);
             SearchLastNameTextBox.TabIndex = 1;
+            SearchLastNameTextBox.KeyPress += SearchLastNameTextBox_KeyPress;
             // 
             // SearchReferralButton
             // 
