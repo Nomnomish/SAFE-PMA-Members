@@ -100,8 +100,9 @@
             addAdminButton.Name = "addAdminButton";
             addAdminButton.Size = new Size(219, 23);
             addAdminButton.TabIndex = 3;
-            addAdminButton.Text = "Add Administrator";
+            addAdminButton.Text = "Administration Area";
             addAdminButton.UseVisualStyleBackColor = true;
+            addAdminButton.Click += addAdminButton_Click;
             // 
             // mainForm
             // 

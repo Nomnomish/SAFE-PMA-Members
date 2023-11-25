@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(viewEditMembers));
             membersListbox = new ListBox();
             LastNameTextbox = new TextBox();
             LastNameLabel = new Label();
@@ -381,8 +382,9 @@
             Controls.Add(LastNameLabel);
             Controls.Add(LastNameTextbox);
             Controls.Add(membersListbox);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "viewEditMembers";
-            Text = "viewEditMembers";
+            Text = "Edit Members";
             ResumeLayout(false);
             PerformLayout();
         }

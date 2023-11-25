@@ -25,5 +25,11 @@ namespace SAFE_PMA_Members
             string[] backup = db.BackupList();
             db.FileAccess(backup);
         }
+
+        private void addAdminButton_Click(object sender, EventArgs e)
+        {
+            AdminForm adminForm = new AdminForm();
+            adminForm.ShowDialog();
+        }
     }
 }

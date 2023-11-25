@@ -38,7 +38,7 @@ namespace SAFE_PMA_Members
             {
                 addition.ReferralID = form3.id;
                 referral = db.getReferralID(form3.id);
-                addSelectMemberLabel.Text = referral.DisplayInfo ;
+                addSelectMemberLabel.Text = referral.DisplayInfo;
             }
         }
 

@@ -14,10 +14,10 @@ namespace SAFE_PMA_Members
             string fullPath = folder + "/SAFE/" + fileName;
             File.WriteAllLines(fullPath, input);
         }
-        public string[] BackupAction()
-        {
+         //public string[] BackupAction()
+        //{
 
-        }
+        //}
         public string[] BackupList()
         {
             using var connection = new MySqlConnection

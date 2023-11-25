@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addMemberForm));
             addFirstNameLabel = new Label();
             addFirstNameTextBox = new TextBox();
             addLastNameTextBox = new TextBox();
@@ -302,6 +303,7 @@
             Controls.Add(addLastNameLabel);
             Controls.Add(addFirstNameTextBox);
             Controls.Add(addFirstNameLabel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "addMemberForm";
             Text = "Add Members";
             ResumeLayout(false);
